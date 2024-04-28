@@ -20,14 +20,14 @@ export default {
         "Worksans-Black": "Worksans-Black",
       },
       colors: {
-        "orange-10": "#FF9500",
-        "orange-15": "#FFBF66",
-        "orange-20": "#FFCA80",
-        "orange-30": "#FFD499",
-        "orange-40": "#FFEACC",
-        "orange-50": "#FFF4E5",
-        "orange-60": "#FFF9F0",
-        "orange-70": "#FFFDFA",
+        "prime-10": "#FF9500",
+        "prime-15": "#FFBF66",
+        "prime-20": "#FFCA80",
+        "prime-30": "#FFD499",
+        "prime-40": "#FFEACC",
+        "prime-50": "#FFF4E5",
+        "prime-60": "#FFF9F0",
+        "prime-70": "#FFFDFA",
 
         "dark-10": "#1A1A1A",
         "dark-15": "#262626",
@@ -38,6 +38,9 @@ export default {
         "dark-60": "#98989A",
         "dark-70": "#B3B3B3",
       },
+      container: {
+        center: true
+      }
     },
   },
   plugins: [
