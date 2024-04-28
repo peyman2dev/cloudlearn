@@ -44,5 +44,5 @@
 }
 
 body {
-  @apply max-w-[1920px] mx-auto font-Worksans-Light;
+  @apply max-w-[1920px] mx-auto font-Worksans-Regular;
 }
