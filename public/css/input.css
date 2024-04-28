@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@font-face {
+  font-family: "Worksans-Thin";
+  src: url(../fonts/Worksans/WorkSans-Thin.ttf);
+}
+
+@font-face {
+  font-family: "Worksans-Light";
+  src: url(../fonts/Worksans/WorkSans-Light.ttf);
+}
+
+@font-face {
+  font-family: "Worksans-Regular";
+  src: url(../fonts/Worksans/WorkSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Worksans-Medium";
+  src: url(../fonts/Worksans/WorkSans-Medium.ttf);
+}
+
+@font-face {
+  font-family: "Worksans-SemiBold";
+  src: url(../fonts/Worksans/WorkSans-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: "Worksans-Bold";
+  src: url(../fonts/Worksans/WorkSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: "Worksans-ExtraBold";
+  src: url(../fonts/Worksans/WorkSans-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: "Worksans-Black";
+  src: url(../fonts/Worksans/WorkSans-Black.ttf);
+}
+
+body {
+  @apply max-w-[1920px] mx-auto font-Worksans-Light;
+}
