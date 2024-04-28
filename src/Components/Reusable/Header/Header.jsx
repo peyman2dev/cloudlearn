@@ -4,7 +4,7 @@ import Win from "./Win/Win";
 
 export default function Header() {
   return (
-    <header>
+    <header className="lg:mt-6">
       <Mob />
       <Win />
     </header>

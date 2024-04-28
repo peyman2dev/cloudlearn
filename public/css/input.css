@@ -46,3 +46,8 @@
 body {
   @apply max-w-[1920px] mx-auto font-Worksans-Regular;
 }
+
+
+.dark {
+  @apply bg-dark-10 text-white
+}
