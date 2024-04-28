@@ -47,7 +47,14 @@ body {
   @apply max-w-[1920px] mx-auto font-Worksans-Regular;
 }
 
-
 .dark {
-  @apply bg-dark-10 text-white
+  @apply bg-dark-10 text-white;
+}
+
+.light {
+  @apply bg-[#F7F7F8] text-dark-10;
+}
+
+.button.primary {
+  @apply px-5 py-3.5 bg-prime-10 text-white  shadow-lg duration-150 hover:bg-opacity-90 rounded-lg;
 }

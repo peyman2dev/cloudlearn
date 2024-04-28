@@ -27,13 +27,13 @@ export default function ThemeButton() {
         {isDark ? <Moon /> : <Sun1 />}
       </button>
       <div
-        className={`top-[80%] p-1 right-2/4 dark:bg-dark-15 bg-gray-50 dark:border-white/10 border min-w-[90px]  text-sky-500 child:duration-150 child-hover:bg-sky-500/5 child:py-2 child:rounded-md child:px-6  absolute  rounded-lg duration-200 ${
+        className={`top-[80%] p-1 right-2/4 dark:bg-dark-15 bg-white dark:text-sky-200 dark:border-white/10 border min-w-[90px]  text-blue-500 child:duration-150 child-hover:bg-sky-500/5 child:py-2.5 child:rounded-md child:px-8  absolute  rounded-lg duration-200 ${
           show ? "" : "opacity-0 invisible"
         }`}
       >
         <button
           onClick={() => setThemeTo("light")}
-          className="flex items-center gap-3"
+          className="flex items-center gap-2"
         >
           <span>
             <Sun1 size={21} className="" />
@@ -42,7 +42,7 @@ export default function ThemeButton() {
         </button>
         <button
           onClick={() => setThemeTo("dark")}
-          className="flex items-center gap-3"
+          className="flex items-center gap-2"
         >
           <span>
             <Moon size={21} className="" />
