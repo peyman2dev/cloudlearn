@@ -29,3 +29,16 @@ export const getMe = createAsyncThunk(
         }
     }
 );
+
+
+export const getLogin = createAsyncThunk(
+    "clientReduce/getLogin",
+    async ({ user, setIsLoading }) => {
+        return client.post('/auth/login', user)
+        .then(req => req.data)
+        .then(result => result)
+        .finally(() => {
+            setIsLoading(false)
+        })
+    }
+)

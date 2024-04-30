@@ -1,9 +1,14 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
-import SubmitButton from "../../Reusable/Buttons/SubmitButton/SubmitButton";
+import { getLogin } from "../../../Utils/Redux/Ducks/ducks";
+import useSubmit from "../../../Utils/Hooks/useSubmit";
 
 export default function Login() {
+  const { Element, isLoading, loginHandler, setIsLoading } = useSubmit({
+    title: "CONTINUE",
+  });
+
   return (
     <section
       className="w-[400px]"
@@ -13,19 +18,17 @@ export default function Login() {
         <h1>Login</h1>
         <div className="flex items-center justify-center w-full gap-1 text-sm mt-3 font-Worksans-Regular text-zinc-500">
           <span> Haven't an account?</span>
-          <Link to={'/auth/register'} className="text-prime-10"> 
-          Register
+          <Link to={"/auth/register"} className="text-prime-10">
+            Register
           </Link>
         </div>
       </div>
       <Formik
         initialValues={{
-          idenitifier: null,
-          password: null,
+          idenitifier: "",
+          password: "",
         }}
-        onSubmit={(values) => {
-          console.log(values)
-        }}
+        onSubmit={(values) => getLoginHandler({ user: values })}
       >
         {({ values, handleChange, handleSubmit }) => (
           <Form>
@@ -41,22 +44,24 @@ export default function Login() {
               placeholder="Enter the password.."
             />
 
+
             <div className="flex items-center gap-1 select-none mt-1">
-              <input type="checkbox" name="remember " id="remember" className="accent-amber-600" />
+              <input
+                type="checkbox"
+                name="remember "
+                id="remember"
+                className="accent-amber-600"
+              />
               <label htmlFor="remember">Remember me</label>
             </div>
-
-          <SubmitButton
-          value={"LOGIN"}
-           />
-
+            {/* Submit Button */}
+            <Element clickHandler={() => loginHandler({ userInfos: values })} />
+            {/* Submit Button */}
             <div className="text-center dark:text-dark-60 text-zinc-400 text-sm mt-4 duration-150">
               Developed by CloudsTech.
             </div>
             <div className="my-3 text-sm text-center text-sky-500">
-              <Link to={'/'}>
-              Back
-              </Link>
+              <Link to={"/"}>Back</Link>
             </div>
           </Form>
         )}
