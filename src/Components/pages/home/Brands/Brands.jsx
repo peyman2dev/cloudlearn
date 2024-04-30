@@ -43,8 +43,8 @@ export default function Brands() {
   const { isDark } = useSelector((state) => state.theme);
   return (
     <section className="my-[200px] container relative lg:h-[200px] child:min-h-[80px] child:lg:h-full dark:bg-dark-15 lg:flex-row flex-col shadow-lg bg-white rounded-lg flex items-center px-4">
-      {_.map(brands, (brand) => (
-        <div className="flex w-full h-full items-center justify-center">
+      {_.map(brands, (brand, index) => (
+        <div key={index} className="flex w-full h-full items-center justify-center">
           <span>
             <img src={isDark ? brand.dark : brand.light} alt="" />
           </span>

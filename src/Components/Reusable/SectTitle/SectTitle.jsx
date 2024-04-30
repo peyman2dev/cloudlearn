@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function SectTitle({children,title,url}) {
-    console.log(children)
   return (
     <div className="flex items-center lg:flex-row flex-col gap-3 lg:gap-0 justify-between">
       <div className="lg:w-[70%]">

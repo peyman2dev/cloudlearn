@@ -22,12 +22,12 @@ export default function ThemeButton() {
   };
 
   return (
-    <div className="rounded-lg relative ">
+    <div className="rounded-lg relative z-20">
       <button onClick={(event) => themeBtnHandler(event)} className="p-3">
         {isDark ? <Moon /> : <Sun1 />}
       </button>
       <div
-        className={`top-[80%] p-1 right-2/4 dark:bg-dark-15 bg-white dark:text-sky-200 dark:border-white/10 border min-w-[90px]  text-blue-500 child:duration-150 child-hover:bg-sky-500/5 child:py-2.5 child:rounded-md child:px-8  absolute  rounded-lg duration-200 ${
+        className={`top-[80%] p-1 right-2/4 dark:bg-dark-15 bg-white dark:text-sky-200 dark:border-white/10 border min-w-[90px]  text-blue-500 child:duration-150 child-hover:bg-sky-500/5 child:py-2.5 child:rounded-md child:px-8  absolute z-[50!important]  rounded-lg duration-200 ${
           show ? "" : "opacity-0 invisible"
         }`}
       >

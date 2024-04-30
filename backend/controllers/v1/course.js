@@ -12,7 +12,6 @@ exports.create = async (req, res) => {
     name,
     description,
     shortName,
-    creator: req.user._id,
     categoryID,
     price,
     isComplete: 0,
@@ -41,7 +40,6 @@ exports.getAll = async (req, res) => {
     allCourses.push({
       ...course,
       categoryID: course.categoryID.title,
-      creator: course.creator.name,
     });
   });
 

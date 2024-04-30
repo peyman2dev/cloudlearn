@@ -2,9 +2,12 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import isActived from "../../../../Utils/Functions/isActived";
 import ThemeButton from "../../Buttons/ThemeButton/ThemeButton";
+import { useSelector } from "react-redux";
 export default function Win() {
+  const { isLoggedIn } = useSelector((state) => state.client.user);
+
   return (
-    <nav className="hidden invisible lg:visible container h-14 rounded-lg lg:flex items-center justify-between ">
+    <nav className="hidden relative  invisible lg:visible containe z-50r h-14 rounded-lg lg:flex items-center justify-between ">
       <div className="flex items-center gap-7">
         <div>
           <Link to={"/"}>
@@ -43,14 +46,18 @@ export default function Win() {
           </li>
         </ul>
       </div>
-      <div className="flex items-center gap-5">
+      <div className="flex items-center relative z-[50] gap-5">
         <ThemeButton />
-        <Link
-          className="px-5 text-white bg-prime-10 pb-2 py-1.5 rounded-lg"
-          to={"/auth/login"}
-        >
-          Login
-        </Link>
+        {isLoggedIn ? (
+          <div>Profile</div>
+        ) : (
+          <Link
+            className="px-5 text-white bg-prime-10 pb-2 py-1.5 rounded-lg"
+            to={"/auth/login"}
+          >
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );
