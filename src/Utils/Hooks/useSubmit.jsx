@@ -1,15 +1,26 @@
 import { Radar2 } from "iconsax-react";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
-import { getLogin } from "../Redux/Ducks/ducks";
+import { getLogin, getRegister } from "../Redux/Ducks/ducks";
 
-export default function useSubmit({ title }) {
+export default function useSubmit({ title, action }) {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
   const loginHandler = ({ userInfos }) => {
-    dispatch(getLogin({user: userInfos, setIsLoading}))
     setIsLoading(true);
+    if (action === "login") {
+      dispatch(getLogin({ user: userInfos, setIsLoading }));
+    }
+    if (action === "register") {
+      dispatch(getRegister({
+        user: {
+          ...userInfos,
+          confirmPassword: userInfos.password,
+        },
+        setIsLoading
+      }));
+    }
   };
 
   const Loader = (

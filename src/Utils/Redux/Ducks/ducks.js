@@ -16,17 +16,14 @@ export const getCourses = createAsyncThunk(
 export const getMe = createAsyncThunk(
     "clientReduce/getMe",
     async () => {
-        try {
-            const headers = {
+        return client.get('/auth/me', {
+            headers: {
                 Authorization: `Bearer ${userToken}`
             }
-            const response = client.get('/auth/me', headers)
-
-            return (await response).data
-
-        } catch (error) {
-            console.log(`User Authorization failed.`)
-        }
+        }).then(response => response.data)
+        .then(data => {
+            return data
+        })
     }
 );
 
@@ -35,10 +32,23 @@ export const getLogin = createAsyncThunk(
     "clientReduce/getLogin",
     async ({ user, setIsLoading }) => {
         return client.post('/auth/login', user)
-        .then(req => req.data)
-        .then(result => result)
-        .finally(() => {
-            setIsLoading(false)
-        })
+            .then(req => req.data)
+            .then(result => result)
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }
+)
+
+
+export const getRegister = createAsyncThunk(
+    "clientReduce/getRegister",
+    async ({ user, setIsLoading }) => {
+        return client.post('/auth/register', user)
+            .then(response => response.data)
+            .then(resolve => resolve)
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 )

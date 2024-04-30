@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { getCourses, getLogin, getMe } from "../Ducks/ducks"
+import { getCourses, getLogin, getMe, getRegister } from "../Ducks/ducks"
 import Swal from "sweetalert2"
+import { useNavigate } from "react-router-dom"
+
 
 const Toast = Swal.mixin({
     toast: true,
@@ -33,8 +35,12 @@ const clientReduce = createSlice({
                 }
             })
             .addCase(getMe.fulfilled, (state, action) => {
-                state.user.isLoggedIn = false
-                state.user.token = null
+                if (action.payload) {
+                console.log(action.payload)
+                    state.user.isLoggedIn = true
+                    state.user.userInfos = action.payload
+                }
+ 
             })
             .addCase(getLogin.fulfilled, (state, action) => {
                 console.log(action)
@@ -45,6 +51,31 @@ const clientReduce = createSlice({
                     icon: "error",
                     title: "Something went wrong",
                 })
+            })
+            .addCase(getRegister.fulfilled, (state, action) => {
+                if (action.payload) {
+                    Toast.fire({
+                        icon: "success",
+                        title: "You've logged in successfully.",
+                        didClose: () => {
+                            window.location.pathname = '/'
+                        }
+                    })
+
+                    localStorage.setItem('token', action.payload.accessToken)
+
+                    state.user.isLoggedIn = true
+                    state.user.token = action.payload.accessToken
+                    state.user.userInfos = action.payload.user
+                }
+            })
+            .addCase(getRegister.rejected, (state, action) => {
+                Toast.fire({
+                    "title": "Registeration failed ..",
+                    "text": "Checkout the console..",
+                    "icon": "error"
+                })
+                console.log(action)
             })
     }
 

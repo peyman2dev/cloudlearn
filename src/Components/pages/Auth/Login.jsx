@@ -7,12 +7,12 @@ import useSubmit from "../../../Utils/Hooks/useSubmit";
 export default function Login() {
   const { Element, isLoading, loginHandler, setIsLoading } = useSubmit({
     title: "CONTINUE",
+    action: "login"
   });
 
   return (
     <section
       className="w-[400px]"
-      onSubmit={(event) => event.stopPropagation()}
     >
       <div className="w-full text-center mb-5 font-Worksans-SemiBold text-3xl">
         <h1>Login</h1>
