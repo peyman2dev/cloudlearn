@@ -22,8 +22,8 @@ export default function ThemeButton() {
   };
 
   return (
-    <div className="rounded-lg relative z-20">
-      <button onClick={(event) => themeBtnHandler(event)} className="p-3">
+    <div className="rounded-lg relative z-10">
+      <button onClick={(event) => themeBtnHandler(event)} className="p-2">
         {isDark ? <Moon /> : <Sun1 />}
       </button>
       <div

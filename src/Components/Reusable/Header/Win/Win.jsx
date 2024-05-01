@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import isActived from "../../../../Utils/Functions/isActived";
 import ThemeButton from "../../Buttons/ThemeButton/ThemeButton";
 import { useSelector } from "react-redux";
+import Profile from "../../Dropdowns/Profile/Profile";
 export default function Win() {
   const { isLoggedIn } = useSelector((state) => state.client.user);
-
   return (
     <nav className="hidden relative  invisible lg:visible containe z-50r h-14 rounded-lg lg:flex items-center justify-between ">
       <div className="flex items-center gap-7">
@@ -48,11 +48,12 @@ export default function Win() {
       </div>
       <div className="flex items-center relative z-[50] gap-5">
         <ThemeButton />
+        <span className="w-px h-6 dark:bg-white/5 bg-black/5"></span>
         {isLoggedIn ? (
-          <div>Profile</div>
+          <Profile />
         ) : (
           <Link
-            className="px-5 text-white bg-prime-10 pb-2 py-1.5 rounded-lg"
+            className={`px-5 text-white bg-prime-10 pb-2 py-1.5 rounded-lg`}
             to={"/auth/login"}
           >
             Login
