@@ -2,6 +2,7 @@ import React from "react";
 import Brands from "../Brands/Brands";
 import Benefits from "../Benefits/Benefits";
 import Courses from "../Courses/Courses";
+import Testimonials from "../Testimonials/Testimonials";
 
 export default function Main() {
   return (
@@ -9,6 +10,7 @@ export default function Main() {
       <Brands />
       <Benefits />
       <Courses />
+      <Testimonials />
     </main>
   );
 }

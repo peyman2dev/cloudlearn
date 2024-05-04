@@ -1,19 +1,44 @@
-import { Field, Form, Formik } from "formik";
+import { useFormik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
-import { getLogin } from "../../../Utils/Redux/Ducks/ducks";
+import * as Yup from "yup";
 import useSubmit from "../../../Utils/Hooks/useSubmit";
+import Error from "../../Reusable/Formik/Error";
+import { getLogin } from "../../../Utils/Redux/Ducks/ducks";
 
 export default function Login() {
-  const { Element, isLoading, loginHandler, setIsLoading } = useSubmit({
-    title: "CONTINUE",
-    action: "login"
+  const Submit = useSubmit();
+  const formik = useFormik({
+    initialValues: {
+      identifier: "",
+      password: "",
+    },
+
+    onSubmit: (values, { setSubmitting }) => {
+      Submit.submitHandler({
+        action: getLogin({ user: values, setLoading: setSubmitting }),
+      });
+    },
+    validate: (values) => {
+      const errors = {};
+
+      if (!values.identifier) {
+        errors.identifier = "Please enter the username ..";
+      } else if (values.identifier.length < 4) {
+        errors.identifier = "Username minium length is 4 characters..";
+      }
+      if (!values.password) {
+        errors.password = "Password is required !";
+      } else if (values.password.length < 8) {
+        errors.password = "Password must be at least 8 characters..";
+      }
+
+      return errors; // You missed this line
+    },
   });
 
   return (
-    <section
-      className="w-[400px]"
-    >
+    <section className="w-[400px]">
       <div className="w-full text-center mb-5 font-Worksans-SemiBold text-3xl">
         <h1>Login</h1>
         <div className="flex items-center justify-center w-full gap-1 text-sm mt-3 font-Worksans-Regular text-zinc-500">
@@ -23,49 +48,33 @@ export default function Login() {
           </Link>
         </div>
       </div>
-      <Formik
-        initialValues={{
-          idenitifier: "",
-          password: "",
-        }}
-        onSubmit={(values) => getLoginHandler({ user: values })}
-      >
-        {({ values, handleChange, handleSubmit }) => (
-          <Form>
-            <Field
-              className="input-element"
-              name="idenitifier"
-              placeholder="Enter the username.."
-            />
-            <Field
-              className="input-element"
-              name="password"
-              type="password"
-              placeholder="Enter the password.."
-            />
+      <form onSubmit={formik.handleSubmit}>
+        <input
+          className="input-element"
+          placeholder="Enter the your username .."
+          name="identifier"
+          onChange={formik.handleChange}
+          value={formik.values.identifier}
+          onBlur={formik.handleBlur} // Add onBlur event
+        />
+        <Error
+          err={formik.errors.identifier}
+          touch={formik.touched.identifier}
+        />
 
+        <input
+          className="input-element"
+          placeholder="Enter the your password .."
+          type="password"
+          name="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur} // Add onBlur event
+        />
+        <Error err={formik.errors.password} touch={formik.touched.password} />
 
-            <div className="flex items-center gap-1 select-none mt-1">
-              <input
-                type="checkbox"
-                name="remember "
-                id="remember"
-                className="accent-amber-600"
-              />
-              <label htmlFor="remember">Remember me</label>
-            </div>
-            {/* Submit Button */}
-            <Element clickHandler={() => loginHandler({ userInfos: values })} />
-            {/* Submit Button */}
-            <div className="text-center dark:text-dark-60 text-zinc-400 text-sm mt-4 duration-150">
-              Developed by CloudsTech.
-            </div>
-            <div className="my-3 text-sm text-center text-sky-500">
-              <Link to={"/"}>Back</Link>
-            </div>
-          </Form>
-        )}
-      </Formik>
+        <Submit.Button title={"CONTINUE"} disabled={formik.isSubmitting} />
+      </form>
     </section>
   );
 }

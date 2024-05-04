@@ -30,12 +30,13 @@ export const getMe = createAsyncThunk(
 
 export const getLogin = createAsyncThunk(
     "clientReduce/getLogin",
-    async ({ user, setIsLoading }) => {
+    async ({ user, setLoading }) => {
+        console.log(user)
         return client.post('/auth/login', user)
             .then(req => req.data)
             .then(result => result)
             .finally(() => {
-                setIsLoading(false)
+                setLoading(false)
             })
     }
 )
@@ -43,12 +44,12 @@ export const getLogin = createAsyncThunk(
 
 export const getRegister = createAsyncThunk(
     "clientReduce/getRegister",
-    async ({ user, setIsLoading }) => {
+    async ({ user, setLoading }) => {
         return client.post('/auth/register', user)
             .then(response => response.data)
             .then(resolve => resolve)
             .finally(() => {
-                setIsLoading(false)
+                setLoading(false)
             })
     }
 )

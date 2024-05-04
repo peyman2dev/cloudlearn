@@ -1,11 +1,18 @@
-import { Diamonds, Folder2, Logout, MessageEdit, Teacher, User } from "iconsax-react";
+import {
+  Diamonds,
+  Folder2,
+  Logout,
+  MessageEdit,
+  Teacher,
+  User,
+} from "iconsax-react";
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Profile() {
   const [show, setShow] = useState(false);
-  const { role } = useSelector((state) => state.client.user.userInfos);
+  const user = useSelector((state) => state.client.user.userInfos);
 
   const dropdownRef = useRef();
 
@@ -46,14 +53,14 @@ export default function Profile() {
             />
           </div>
           <div>
-            <p className="font-Worksans-Medium">Peyman Ahmadi</p>
+            <p className="font-Worksans-Medium">{user.name}</p>
             <div className="text-sm">
-              {role === "USER" ? (
+              {user.role === "USER" ? (
                 <span className="text-zinc-400">Student</span>
               ) : (
                 <div className="flex items-center text-prime-10 gap-1 font-Worksans-SemiBold">
                   <span>
-                    <Teacher />
+                    <Teacher  size={18}/>
                   </span>
                   <span>Teacher</span>
                 </div>
@@ -62,25 +69,28 @@ export default function Profile() {
           </div>
         </header>
         <main className="border-b pb-2 dark:border-b-white/10 mt-2 child:h-10 child:duration-150 child-hover:bg-slate-50 child-hover:dark:bg-dark-30/10 child:rounded-lg child:px-4 child:flex child:items-center child:gap-2 space-y-0.5">
-          <Link to={'/my-account/'}>
+          <Link to={"/my-account/"}>
             <span>
               <User size={21} className="text-dark-10 dark:text-dark-60" />
             </span>
             <span>Edit profile</span>
           </Link>
-          <Link to={'/my-account/courses'}>
+          <Link to={"/my-account/courses"}>
             <span>
               <Folder2 size={21} className="text-dark-10 dark:text-dark-60" />
             </span>
             <span>Courses</span>
           </Link>
-          <Link to={'/my-account/tickets'}>
+          <Link to={"/my-account/tickets"}>
             <span>
-              <MessageEdit size={21} className="text-dark-10 dark:text-dark-60" />
+              <MessageEdit
+                size={21}
+                className="text-dark-10 dark:text-dark-60"
+              />
             </span>
             <span>Tickets</span>
           </Link>
-          <Link to={'/my-account/subscription'}>
+          <Link to={"/my-account/subscription"}>
             <span>
               <Diamonds size={21} className="text-dark-10 dark:text-dark-60" />
             </span>
@@ -88,21 +98,26 @@ export default function Profile() {
           </Link>
         </main>
         <footer className="mt-2">
-            <button onClick={()=> {
-                localStorage.removeItem('token')
-                window.location.reload()
-            }} className="px-4 h-10 flex hover:bg-slate-50 items-center gap-2 w-full duration-150 hover:dark:bg-dark-30/10 rounded-lg">
-                <span className="text-dark-10 dark:text-dark-60">
-                <Logout />
-                </span>
-                <span>
-                    Logout
-                </span>
-            </button>
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+              window.location.reload();
+            }}
+            className="px-4 h-10 flex hover:bg-slate-50 items-center gap-2 w-full duration-150 hover:dark:bg-dark-30/10 rounded-lg"
+          >
+            <span className="text-dark-10 dark:text-dark-60">
+              <Logout />
+            </span>
+            <span>Logout</span>
+          </button>
         </footer>
       </section>
 
-      <div className={`fixed w-full h-screen z-[10] bg-black/40 backdrop-blur-sm top-0 left-0 duration-150 ${show ? "" : "opacity-0 invisible"}`}></div>
+      <div
+        className={`fixed w-full h-screen z-[10] bg-black/40 backdrop-blur-sm top-0 left-0 duration-150 ${
+          show ? "" : "opacity-0 invisible"
+        }`}
+      ></div>
     </div>
   );
 }

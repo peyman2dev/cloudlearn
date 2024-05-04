@@ -9,7 +9,7 @@ const Toast = Swal.mixin({
     timer: 2500,
     timerProgressBar: true,
     position: "top-end",
-    customClass: "dark:bg-[#262626!important] text-[white!important]",
+    customClass: "dark:bg-[#262626!important] dark:text-[white!important]",
     showConfirmButton: false
 })
 
@@ -36,20 +36,29 @@ const clientReduce = createSlice({
             })
             .addCase(getMe.fulfilled, (state, action) => {
                 if (action.payload) {
-                console.log(action.payload)
+                    console.log(action.payload)
                     state.user.isLoggedIn = true
                     state.user.userInfos = action.payload
                 }
- 
+
             })
             .addCase(getLogin.fulfilled, (state, action) => {
-                console.log(action)
+                Toast.fire({
+                    icon: "success",
+                    title: "You've logged in successfully",
+                    didClose: () => {
+                        window.location.pathname = '/'
+                    }
+                })
+                if (action.payload) {
+                    localStorage.setItem('token', action.payload.accessToken)
+                }
             })
             .addCase(getLogin.rejected, (state, action) => {
                 console.log(action)
                 Toast.fire({
                     icon: "error",
-                    title: "Something went wrong",
+                    title: "Please check out your information",
                 })
             })
             .addCase(getRegister.fulfilled, (state, action) => {
@@ -71,9 +80,8 @@ const clientReduce = createSlice({
             })
             .addCase(getRegister.rejected, (state, action) => {
                 Toast.fire({
-                    "title": "Registeration failed ..",
-                    "text": "Checkout the console..",
-                    "icon": "error"
+                    icon: "error",
+                    title: "Please check out your information",
                 })
                 console.log(action)
             })

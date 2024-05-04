@@ -59,15 +59,26 @@ body {
   @apply px-5 py-3.5 bg-prime-10 text-white  shadow-lg duration-150 hover:bg-opacity-90 rounded-lg active:scale-95;
 }
 
-
 .input-element {
-  @apply w-full h-10 rounded-lg  outline-none my-2 px-6 bg-white shadow-sm dark:bg-dark-15 placeholder:text-sm pb-1
+  @apply w-full h-10 rounded-lg  outline-none my-2 px-6 bg-white shadow-sm dark:bg-dark-15 placeholder:text-sm pb-1;
 }
 
 .submit-button {
-  @apply w-full h-10 duration-150 active:scale-95 mt-4 rounded-lg text-white bg-prime-10
+  @apply w-full h-10 duration-150 active:scale-95 mt-4 rounded-lg text-white bg-prime-10;
 }
 
 .submit-button.is-loading {
-  @apply bg-prime-30  active:scale-100 hover:bg-prime-15 cursor-not-allowed
+  @apply bg-prime-30  active:scale-100 hover:bg-prime-15 cursor-not-allowed;
+}
+
+.error {
+  @apply text-red-500 p-1 text-sm;
+}
+
+.caption {
+  @apply text-sm dark:text-dark-60 text-dark-30;
+}
+
+.caption-card {
+  @apply p-5 bg-white rounded-lg shadow-md dark:bg-dark-15
 }
