@@ -1,17 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getCourses, getLogin, getMe, getRegister } from "../Ducks/ducks"
-import Swal from "sweetalert2"
-import { useNavigate } from "react-router-dom"
+import useSwal from "../../Hooks/useSwal"
+
+const Swal = useSwal()
 
 
-const Toast = Swal.mixin({
-    toast: true,
-    timer: 2500,
-    timerProgressBar: true,
-    position: "top-end",
-    customClass: "dark:bg-[#262626!important] dark:text-[white!important]",
-    showConfirmButton: false
-})
 
 const clientReduce = createSlice({
     name: "clientReduce",
@@ -43,7 +36,7 @@ const clientReduce = createSlice({
 
             })
             .addCase(getLogin.fulfilled, (state, action) => {
-                Toast.fire({
+              Swal.Toast.fire({
                     icon: "success",
                     title: "You've logged in successfully",
                     didClose: () => {
@@ -56,14 +49,14 @@ const clientReduce = createSlice({
             })
             .addCase(getLogin.rejected, (state, action) => {
                 console.log(action)
-                Toast.fire({
+              Swal.Toast.fire({
                     icon: "error",
                     title: "Please check out your information",
                 })
             })
             .addCase(getRegister.fulfilled, (state, action) => {
                 if (action.payload) {
-                    Toast.fire({
+                  Swal.Toast.fire({
                         icon: "success",
                         title: "You've logged in successfully.",
                         didClose: () => {
@@ -79,7 +72,7 @@ const clientReduce = createSlice({
                 }
             })
             .addCase(getRegister.rejected, (state, action) => {
-                Toast.fire({
+              Swal.Toast.fire({
                     icon: "error",
                     title: "Please check out your information",
                 })

@@ -1,41 +1,27 @@
-import { useFormik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
-import * as Yup from "yup";
 import useSubmit from "../../../Utils/Hooks/useSubmit";
-import Error from "../../Reusable/Formik/Error";
 import { getLogin } from "../../../Utils/Redux/Ducks/ducks";
+import { useForm } from "react-hook-form";
+import Error from "../../Reusable/Messages/Error";
 
 export default function Login() {
   const Submit = useSubmit();
-  const formik = useFormik({
-    initialValues: {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
       identifier: "",
       password: "",
     },
-
-    onSubmit: (values, { setSubmitting }) => {
-      Submit.submitHandler({
-        action: getLogin({ user: values, setLoading: setSubmitting }),
-      });
-    },
-    validate: (values) => {
-      const errors = {};
-
-      if (!values.identifier) {
-        errors.identifier = "Please enter the username ..";
-      } else if (values.identifier.length < 4) {
-        errors.identifier = "Username minium length is 4 characters..";
-      }
-      if (!values.password) {
-        errors.password = "Password is required !";
-      } else if (values.password.length < 8) {
-        errors.password = "Password must be at least 8 characters..";
-      }
-
-      return errors; // You missed this line
-    },
   });
+
+  const loginHandler = (data) => {
+    const user = data;
+    Submit.submitHandler(getLogin(user));
+  };
 
   return (
     <section className="w-[400px]">
@@ -48,32 +34,38 @@ export default function Login() {
           </Link>
         </div>
       </div>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit(loginHandler)}>
         <input
+          {...register("identifier", {
+            minLength: {
+              value: 4,
+              message: "Username minimum length is 4 ..",
+            },
+            maxLength: {
+              value: 21,
+              message: "Username maximum length is 21 ..",
+            },
+            required: "Username it's a required field ..",
+          })}
           className="input-element"
-          placeholder="Enter the your username .."
-          name="identifier"
-          onChange={formik.handleChange}
-          value={formik.values.identifier}
-          onBlur={formik.handleBlur} // Add onBlur event
+          placeholder="Enter the username .."
         />
-        <Error
-          err={formik.errors.identifier}
-          touch={formik.touched.identifier}
-        />
-
+        <Error errors={errors} target="username" />
         <input
+          {...register("password", {
+            minLength: {
+              value: 8,
+              message: "Password minimum length is 8 ...",
+            },
+            required: "Password it's a required field ..",
+          })}
           className="input-element"
-          placeholder="Enter the your password .."
           type="password"
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur} // Add onBlur event
+          placeholder="Enter the password .."
         />
-        <Error err={formik.errors.password} touch={formik.touched.password} />
+        <Error errors={errors} target="password" />
 
-        <Submit.Button title={"CONTINUE"} disabled={formik.isSubmitting} />
+        <Submit.Button title={"CONTINUE"} />
       </form>
     </section>
   );

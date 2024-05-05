@@ -16,7 +16,7 @@ export default function useSubmit() {
     );
   };
 
-  const submitHandler = ({ action }) => {
+  const submitHandler = (action) => {
     dispatch(action);
   };
 

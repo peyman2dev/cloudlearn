@@ -59,10 +59,6 @@ body {
   @apply px-5 py-3.5 bg-prime-10 text-white  shadow-lg duration-150 hover:bg-opacity-90 rounded-lg active:scale-95;
 }
 
-.input-element {
-  @apply w-full h-10 rounded-lg  outline-none my-2 px-6 bg-white shadow-sm dark:bg-dark-15 placeholder:text-sm pb-1;
-}
-
 .submit-button {
   @apply w-full h-10 duration-150 active:scale-95 mt-4 rounded-lg text-white bg-prime-10;
 }
@@ -80,5 +76,9 @@ body {
 }
 
 .caption-card {
-  @apply p-5 bg-white rounded-lg shadow-md dark:bg-dark-15
+  @apply p-5 bg-white rounded-lg shadow-md dark:bg-dark-15;
+}
+
+form input {
+  @apply w-full h-10 rounded-lg  outline-none my-2 px-6 bg-white shadow-sm dark:bg-dark-15 placeholder:text-sm pb-1 ;
 }

@@ -3,66 +3,37 @@ import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import useSubmit from "../../../Utils/Hooks/useSubmit";
 import { getRegister } from "../../../Utils/Redux/Ducks/ducks";
-import Error from "../../Reusable/Formik/Error";
 import registerSchema from "../../../Utils/Validations/registerSchema";
 import useSwal from "../../../Utils/Hooks/useSwal";
+import { useForm } from "react-hook-form";
+import Error from "../../Reusable/Messages/Error";
 
 export default function Register() {
   const Swal = useSwal();
-
   const Submit = useSubmit();
-  const formik = useFormik({
-    initialValues: {
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm({
+    defaultValues: {
       name: "",
       username: "",
       email: "",
       phone: "",
       password: "",
     },
-    onSubmit: async (values, { setSubmitting }) => {
-      // Trying that is form valid ?
-      try {
-        let userInfos = {
-          ...values,
-          confirmPassword: values.password,
-        };
-        let isFormValid = await registerSchema.validate(userInfos, {
-          abortEarly: false,
-        });
-
-        //  If form was valid :
-        if (isFormValid) {
-          Submit.submitHandler({
-            action: getRegister({
-              user: {
-                ...values,
-                confirmPassword: values.password,
-              },
-              setLoading: setSubmitting,
-            }),
-          });
-        }
-
-        // Else :
-      } catch (err) {
-        Swal.Toast.fire({
-          title: "Something went wrong",
-          text: "Please try again ..",
-          icon: "error"
-        });
-        let errors = err.inner.reduce(
-          (acc, _err) => ({
-            ...acc,
-            [_err.path]: _err.message,
-          }),
-          {}
-        );
-
-        return errors;
-      }
-    },
-    validationSchema: registerSchema
   });
+
+  const registerHandler = (data) => {
+    const user = {
+      ...data,
+      confirmPassword: data.password,
+    };
+    console.log(user);
+    Submit.submitHandler(getRegister(user));
+  };
+
   return (
     <section className="w-[400px]">
       <header className="w-full text-center mb-5 font-Worksans-SemiBold text-3xl">
@@ -76,63 +47,73 @@ export default function Register() {
       </header>
       <main>
         {/* Formik Form */}
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={handleSubmit(registerHandler)}>
           <input
-            className="input-element"
-            placeholder="Enter the your full name.."
-            name="name"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.name}
+            {...register("name", {
+              required: "name field is required ..",
+              minLength: {
+                value: 5,
+                message: "* name field minimum length is 5 ..",
+              },
+            })}
+            placeholder="Please enter the full name .."
           />
+          <Error errors={errors} target={"name"} />
           <input
-            className="input-element"
-            placeholder="Enter the your username.."
-            name="username"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.username}
+            placeholder="Please enter the username .."
+            {...register("username", {
+              required: "Username field is required ..",
+              minLength: {
+                value: 3,
+                message: "* username minimum length is 3 characters ..",
+              },
+              maxLength: {
+                value: 21,
+                message: "* username maximum length is 21 characters ..",
+              },
+            })}
           />
+          <Error errors={errors} target={"username"} />
           <input
-            className="input-element"
-            placeholder="Enter the your email.."
-            name="email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
+            placeholder="Please enter the email address .."
+            {...register("email", {
+              required: "Email field is a required  ...",
+              pattern: {
+                value: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/g,
+                message: "Please try a another email...",
+              },
+            })}
           />
+          <Error errors={errors} target={"email"} />
           <input
-            className="input-element"
-            placeholder="Enter the your phone .."
-            name="phone"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.phone}
+            placeholder="Please enter the phone number .."
+            {...register("phone", {
+              required: "Phone number field is a required ..",
+              minLength: {
+                value: 11,
+                message: "* phone minimum length is 11 characters ..",
+              },
+              maxLength: {
+                value: 11,
+                message: "* phone maximum length is 11 characters ..",
+              },
+            })}
           />
+          <Error errors={errors} target={"phone"} />
           <input
-            className="input-element"
-            placeholder="Enter the your password.."
+            placeholder="Please enter the password .."
             type="password"
-            name="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
+            {...register("password", {
+              required: "Password field is required ...",
+              minLength: {
+                value: 8,
+                message: "Password minimum length is 8 characters ..",
+              },
+            })}
           />
-          {/* Errors */}
-          <div className="mt-2">
-            <Error touch={formik.touched.name} err={formik.errors.name} />
-            <Error
-              touch={formik.touched.username}
-              err={formik.errors.username}
-            />
-            <Error touch={formik.touched.email} err={formik.errors.email} />
-            <Error touch={formik.touched.phone} err={formik.errors.phone} />
-            <Error
-              touch={formik.touched.password}
-              err={formik.errors.password}
-            />
-          </div>
-          <Submit.Button title={"CONTINUE"} disabled={formik.isSubmitting} />
+          <Error errors={errors} target={"password"} />
+
+          <Submit.Button title={"CONTINUE"} />
         </form>
       </main>
     </section>
