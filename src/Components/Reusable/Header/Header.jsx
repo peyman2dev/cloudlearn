@@ -10,14 +10,7 @@ export default function Header() {
         <Mob />
         <Win />
       </section>
-      <div
-        className="absolute   top-[0!important]  w-full z-0 h-screen bg-cover"
-        style={{
-          backgroundImage:
-            "url('../../../../../public/images/bgs/overlay-5.png')",
-        }}
-      ></div>
-      <Hero />
+
     </header>
   );
 }

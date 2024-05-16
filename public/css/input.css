@@ -56,7 +56,7 @@ body {
 }
 
 .button.primary {
-  @apply px-5 py-3.5 bg-prime-10 text-white  shadow-lg duration-150 hover:bg-opacity-90 rounded-lg active:scale-95;
+  @apply bg-prime-10 text-white  shadow-lg duration-150 hover:bg-opacity-90 rounded-lg active:scale-95;
 }
 
 .submit-button {
@@ -80,5 +80,25 @@ body {
 }
 
 form input {
-  @apply w-full h-10 rounded-lg  outline-none my-2 px-6 bg-white shadow-sm dark:bg-dark-15 placeholder:text-sm pb-1 ;
+  @apply w-full h-12 rounded-md  outline-none my-2 px-6 bg-[#FCFCFD] border dark:border-white/10 shadow-sm dark:bg-dark-20 placeholder:text-sm pb-1;
+}
+
+.hero-title {
+  @apply mx-auto w-full shadow-sm py-3 flex-col sm:flex-row  justify-start md:justify-center font-Worksans-Medium rounded-md bg-white dark:bg-dark-15 items-center flex gap-4 max-w-max px-10;
+}
+
+.unlock-icon {
+  @apply w-12 h-12 sm:w-14 sm:h-14 dark:bg-dark-20 shadow-sm  border dark:border-white/5 border-prime-10/20 select-none pb-1 flex items-center justify-center rounded-md text-prime-10 bg-prime-50;
+}
+
+.between {
+  @apply flex items-center justify-between;
+}
+
+form label {
+  font-size: small;
+}
+
+.form {
+  @apply p-5 justify-center py-10 bg-white child:w-full  rounded-md flex-col gap-4 shadow-sm flex items-center w-1/2 dark:bg-dark-15;
 }

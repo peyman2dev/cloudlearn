@@ -23,13 +23,13 @@ export default function Profile() {
     }
   };
   return (
-    <div className="relative">
+    <div className="relative z-50">
       <button
         onClick={(event) => {
           event.stopPropagation();
           setShow(!show);
         }}
-        className="w-10 h-10 relative z-[11] rounded-full"
+        className="w-10 h-10 relative z-[20] rounded-full"
       >
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIsbG3WjTvP0dl7gg36khwzuX2_ME42mr8PE3OnH37qA&s"
@@ -37,9 +37,11 @@ export default function Profile() {
           alt=""
         />
       </button>
+
+      {/* DROPDOWN MENU */}
       <section
         ref={dropdownRef}
-        className={`absolute w-[300px] z-[11] top-[130%] bg-white shadow-lg duration-150 p-4 rounded-lg right-0 dark:bg-dark-15 ${
+        className={`absolute w-[300px] z-[51!important] top-[130%] bg-white shadow-lg duration-150 p-4 rounded-lg right-0 dark:bg-dark-15 ${
           show ? "" : "opacity-0 invisible"
         }`}
         id="profile-dropdown"
@@ -114,7 +116,7 @@ export default function Profile() {
       </section>
 
       <div
-        className={`fixed w-full h-screen z-[10] bg-black/40 backdrop-blur-sm top-0 left-0 duration-150 ${
+        className={`fixed w-full h-screen z-[50] bg-black/40 backdrop-blur-sm top-0 left-0 duration-150 ${
           show ? "" : "opacity-0 invisible"
         }`}
       ></div>
