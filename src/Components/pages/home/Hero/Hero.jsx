@@ -34,7 +34,7 @@ export default function Hero() {
           <p>Learn from Industry Experts and Enhance Your Skills.</p>
         </div>
         <div className="mt-5 text-lg child:min-w-max flex items-center gap-3">
-          <Link to={"/courses/"} className="button primary">
+          <Link to={"/courses/"} className="button py-3.5 px-4 primary">
             Explore Courses
           </Link>
           <Link

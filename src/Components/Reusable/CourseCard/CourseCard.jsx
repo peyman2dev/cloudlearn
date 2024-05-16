@@ -5,9 +5,9 @@ export default function CourseCard(props) {
   const courseUrl = `/course/${props.shortName}`;
   return (
     <article className="p-4 rounded-lg dark:bg-dark-15 bg-white shadow-sm">
-      <header>
+      <header className="h-[146px]">
         <Link to={courseUrl}>
-          <img src={`/public${props.cover}`} className="w-full h-full rounded-md object-cover" alt="course" />
+          <img src={`${props.cover}`} className="w-full h-[146px] rounded-md object-cover" alt="course" />
         </Link>
       </header>
       <main className="my-3">
@@ -27,7 +27,7 @@ export default function CourseCard(props) {
         </div>
       </main>
       <footer className="child:py-4 child:w-full child:duration-150 space-y-2">
-        <Link to={courseUrl} className="button block text-center primary border-b-4 border-[#ea5200]">
+        <Link to={courseUrl} className="button block text-center primary border-b-4 border-[teal]">
           Buy now
         </Link>
         <button className="text-prime-10 rounded-lg bg-prime-10/10">

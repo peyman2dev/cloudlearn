@@ -9,12 +9,12 @@ const _routes = [
   },
   {
     path: "/auth/:action",
-    element: <Auth />
+    element: <Auth />,
   },
   {
     path: "/course/:courseName",
-    element: <Course />
-  }
+    element: <Course />,
+  },
 ];
 
-export default _routes
+export default _routes;

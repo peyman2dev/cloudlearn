@@ -675,6 +675,11 @@ video {
   margin-bottom: 0.75rem;
 }
 
+.my-\[100px\] {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
 .my-\[140px\] {
   margin-top: 140px;
   margin-bottom: 140px;
@@ -761,10 +766,6 @@ video {
   height: 1.5rem;
 }
 
-.h-\[80vh\] {
-  height: 80vh;
-}
-
 .h-full {
   height: 100%;
 }
@@ -777,8 +778,24 @@ video {
   height: 100vh;
 }
 
+.h-\[146px\] {
+  height: 146px;
+}
+
+.min-h-\[146px\] {
+  min-height: 146px;
+}
+
+.min-h-\[50vh\] {
+  min-height: 50vh;
+}
+
 .min-h-\[80vh\] {
   min-height: 80vh;
+}
+
+.min-h-\[164px\] {
+  min-height: 164px;
 }
 
 .w-1\/2 {
@@ -789,8 +806,8 @@ video {
   width: 2.5rem;
 }
 
-.w-12 {
-  width: 3rem;
+.w-16 {
+  width: 4rem;
 }
 
 .w-4 {
@@ -950,9 +967,9 @@ video {
   border-top-width: 1px;
 }
 
-.border-\[\#ea5200\] {
+.border-\[teal\] {
   --tw-border-opacity: 1;
-  border-color: rgb(234 82 0 / var(--tw-border-opacity));
+  border-color: rgb(0 128 128 / var(--tw-border-opacity));
 }
 
 .bg-black\/10 {
@@ -978,11 +995,11 @@ video {
 
 .bg-prime-10 {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 149 0 / var(--tw-bg-opacity));
+  background-color: rgb(59 175 159 / var(--tw-bg-opacity));
 }
 
 .bg-prime-10\/10 {
-  background-color: rgb(255 149 0 / 0.1);
+  background-color: rgb(59 175 159 / 0.1);
 }
 
 .bg-white {
@@ -1194,7 +1211,7 @@ video {
 
 .text-prime-10 {
   --tw-text-opacity: 1;
-  color: rgb(255 149 0 / var(--tw-text-opacity));
+  color: rgb(59 175 159 / var(--tw-text-opacity));
 }
 
 .text-red-500 {
@@ -1228,7 +1245,7 @@ video {
 }
 
 .accent-prime-10 {
-  accent-color: #FF9500;
+  accent-color: #3BAF9F;
 }
 
 .opacity-0 {
@@ -1314,8 +1331,16 @@ video {
   height: 2.5rem;
 }
 
+.child\:min-h-\[600px\] > * {
+  min-height: 600px;
+}
+
 .child\:min-h-\[80px\] > * {
   min-height: 80px;
+}
+
+.child\:w-1\/2 > * {
+  width: 50%;
 }
 
 .child\:w-full > * {
@@ -1625,7 +1650,7 @@ body {
 .button.primary {
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(255 149 0 / var(--tw-bg-opacity));
+  background-color: rgb(59 175 159 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -1650,7 +1675,7 @@ body {
   width: 100%;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(255 149 0 / var(--tw-bg-opacity));
+  background-color: rgb(59 175 159 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
   transition-duration: 150ms;
@@ -1665,12 +1690,12 @@ body {
 .submit-button.is-loading {
   cursor: not-allowed;
   --tw-bg-opacity: 1;
-  background-color: rgb(255 212 153 / var(--tw-bg-opacity));
+  background-color: rgb(144 218 214 / var(--tw-bg-opacity));
 }
 
 .submit-button.is-loading:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 191 102 / var(--tw-bg-opacity));
+  background-color: rgb(100 196 185 / var(--tw-bg-opacity));
 }
 
 .submit-button.is-loading:active {
@@ -1801,12 +1826,12 @@ form input:is(.dark *) {
   justify-content: center;
   border-radius: 0.375rem;
   border-width: 1px;
-  border-color: rgb(255 149 0 / 0.2);
+  border-color: rgb(59 175 159 / 0.2);
   --tw-bg-opacity: 1;
-  background-color: rgb(255 244 229 / var(--tw-bg-opacity));
+  background-color: rgb(195 240 237 / var(--tw-bg-opacity));
   padding-bottom: 0.25rem;
   --tw-text-opacity: 1;
-  color: rgb(255 149 0 / var(--tw-text-opacity));
+  color: rgb(59 175 159 / var(--tw-text-opacity));
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);

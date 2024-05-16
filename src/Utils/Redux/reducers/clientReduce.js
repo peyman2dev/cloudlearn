@@ -29,7 +29,6 @@ const clientReduce = createSlice({
             })
             .addCase(getMe.fulfilled, (state, action) => {
                 if (action.payload) {
-                    console.log(action.payload)
                     state.user.isLoggedIn = true
                     state.user.userInfos = action.payload
                 }

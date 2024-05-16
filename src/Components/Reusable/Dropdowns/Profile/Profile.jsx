@@ -16,12 +16,7 @@ export default function Profile() {
 
   const dropdownRef = useRef();
 
-  window.onclick = () => {
-    const elemID = dropdownRef.current.id;
-    if (elemID === elemID && show) {
-      setShow(false);
-    }
-  };
+
   return (
     <div className="relative z-50">
       <button

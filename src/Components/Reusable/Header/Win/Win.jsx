@@ -12,9 +12,9 @@ export default function Win() {
         <div>
           <Link to={"/"}>
             <img
-              src="'../../../../../public/images/logo.jfif"
+              src="'../../../../../public/images/logo.png"
               alt="logo"
-              className="w-12 rounded-lg"
+              className="w-16 rounded-lg"
             />
           </Link>
         </div>
