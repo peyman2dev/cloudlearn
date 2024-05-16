@@ -1,11 +1,11 @@
 import React from "react";
-import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import useSubmit from "../../../Utils/Hooks/useSubmit";
 import { getRegister } from "../../../Utils/Redux/Ducks/ducks";
 import registerSchema from "../../../Utils/Validations/registerSchema";
 import useSwal from "../../../Utils/Hooks/useSwal";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Error from "../../Reusable/Messages/Error";
 
 export default function Register() {
@@ -23,6 +23,7 @@ export default function Register() {
       phone: "",
       password: "",
     },
+    yupResolver:  registerSchema
   });
 
   const registerHandler = (data) => {
